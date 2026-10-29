@@ -56,7 +56,7 @@ def probe_port(host: str, port: int) -> dict[str, Any]:
 class Settings:
     """仅保存管理器自己的设置；应用配置仍由应用配置中心持有。"""
 
-    web_host: str = "0.0.0.0"
+    web_host: str = "127.0.0.1"
     web_port: int = 8092
     stop_timeout: int = 600
     auto_start: bool = False

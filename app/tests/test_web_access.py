@@ -55,9 +55,9 @@ def test_manager_uses_project_config_paths_and_preserves_explicit_scope(tmp_path
     monkeypatch.setenv("ANELF_CONFIG_DIR", str(custom))
     monkeypatch.setattr(Layout, "python", property(lambda _: Path(sys.executable)))
     manager = Manager(layout)
-    assert manager.settings.web_host == "0.0.0.0"
+    assert manager.settings.web_host == "127.0.0.1"
     assert manager.web_url == "http://127.0.0.1:8092/webui/"
-    assert Settings.parse({"web_host": "127.0.0.1"}).web_host == "127.0.0.1"
+    assert Settings.parse({"web_host": "0.0.0.0"}).web_host == "0.0.0.0"
     assert not manager.web_access()["password_set"]
     assert not custom.exists()
     assert manager.web_access("fixture-password")["password_set"]
@@ -67,3 +67,13 @@ def test_manager_uses_project_config_paths_and_preserves_explicit_scope(tmp_path
     with manager._operation, pytest.raises(RuntimeError, match="Stop the application"):
         manager.web_access("")
     assert not manager.web_access("")["password_set"]
+
+
+def test_new_install_stays_local_and_saved_lan_scope_is_preserved(tmp_path: Path) -> None:
+    layout = Layout(tmp_path / "project")
+    assert layout.load_settings().web_host == "127.0.0.1"
+    assert not layout.settings_file.exists()
+    layout.save_settings(Settings(web_host="0.0.0.0", web_port=9000))
+    saved = layout.load_settings()
+    assert saved.web_host == "0.0.0.0"
+    assert saved.web_port == 9000

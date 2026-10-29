@@ -468,16 +468,16 @@ async def register_webui_channel() -> None:
 
 
 def _load_server_config() -> tuple[str, int]:
-    """从 config/webui.json 读取 host/port。"""
-    host, port = "0.0.0.0", 8092
+    """默认仅监听本机；配置文件与环境变量可显式开放其他监听地址。"""
+    host, port = "127.0.0.1", 8092
     p = Path(ConfigPaths.WEBUI_CONFIG)
     if p.exists():
         try:
             cfg = json.loads(p.read_text("utf-8")).get("server", {})
-            host, port = cfg.get("host", host), int(cfg.get("port", port))
+            host, port = cfg.get("host") or host, int(cfg.get("port", port))
         except Exception as e:
             log(f"WebUI 服务器配置加载失败: {e}", "DEBUG")
-    host = os.environ.get("ANELF_WEBUI_HOST", host)
+    host = os.environ.get("ANELF_WEBUI_HOST") or host
     port = int(os.environ.get("ANELF_WEBUI_PORT", port))
     if not 1 <= port <= 65535:
         raise ValueError("WebUI port must be between 1 and 65535")
@@ -528,7 +528,7 @@ class WebServerService:
         self._server = server
 
         local_url = f"http://127.0.0.1:{port}"
-        log(f"WebUI 已启动: {local_url}  (监听 {host}:{port}，局域网可访问)")
+        log(f"WebUI 已启动: {local_url}  (监听 {host}:{port})")
         try:
             await server.serve()
         except Exception as e:
