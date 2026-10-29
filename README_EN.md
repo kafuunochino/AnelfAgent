@@ -1,14 +1,16 @@
 # AnelfAgent
 
+> This repository is a fork of the [main branch of 1292917512/AnelfAgent](https://github.com/1292917512/AnelfAgent/tree/main), maintained by [kafuunochino](https://github.com/kafuunochino). Thanks to the original author and upstream contributors.
+
 **v0.4.0** · A personally maintained, self-hosted runtime for autonomous AI
 
 **Continuous Memory · Cross-Channel Presence · Proactive Work · Growing Skills · AI Self-Maintenance · Module Hot Reload**
 
-**[🌐 Official Website · anelf.cn](https://anelf.cn)**
+**[This Repository · kafuunochino/AnelfAgent](https://github.com/kafuunochino/AnelfAgent)** · [Upstream Website](https://anelf.cn) · [Upstream Gitee Mirror](https://gitee.com/eflyz/AnelfAgent)
 
 [简体中文](README.md) | **English**
 
-[![CI](https://github.com/1292917512/AnelfAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/1292917512/AnelfAgent/actions/workflows/ci.yml)
+[![CI](https://github.com/kafuunochino/AnelfAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/kafuunochino/AnelfAgent/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/package%20manager-uv-DE5FE9.svg)](https://github.com/astral-sh/uv)
@@ -17,7 +19,7 @@ AnelfAgent lets you develop a lasting AI presence on your own devices: **an agen
 
 QQ, WeChat, Feishu, Telegram, games, and the Web workspace are entry points to the same mind, memory, skills, and tools. Conversations, heartbeats, background events, sub-agents, and workflows form a runtime for ongoing work. The WebUI shows what the agent is doing, its supporting evidence, and whether operations actually finished.
 
-This is a **personally maintained, continuously evolving MIT open-source project**. You control the code, deployment, model choices, permissions, and data. Everyday configuration and operations are available through both the WebUI and AI tools. Self-improvement takes the form of traceable memories, reusable skills, and verifiable module updates.
+This fork is maintained on top of the upstream project under the **MIT license**. You control the code, deployment, model choices, permissions, and data. Everyday configuration and operations are available through both the WebUI and AI tools. Self-improvement takes the form of traceable memories, reusable skills, and verifiable module updates.
 
 ## Contents
 
@@ -33,7 +35,7 @@ This is a **personally maintained, continuously evolving MIT open-source project
 
 ### Install the Desktop App
 
-Download an installer from **[GitHub Releases](https://github.com/1292917512/AnelfAgent/releases/latest)**. You do not need to clone the repository or configure Python and Node.js first.
+Check **[this repository's Releases](https://github.com/kafuunochino/AnelfAgent/releases)** for desktop installers of this fork. If a package for your platform has not been published, use [Install from Source](#install-from-source) below. Published installers use the following platform and file formats:
 
 | Platform | Package |
 |---|---|
@@ -43,6 +45,8 @@ Download an installer from **[GitHub Releases](https://github.com/1292917512/Ane
 | Other Linux x64 | `.AppImage`; make it executable before running |
 
 Open the app and follow the setup steps to select a project folder and download source. It retrieves the source, prepares Python and dependencies with uv, and builds the Web frontend. Existing projects can stay in their current folder or be moved through the import flow. Once setup finishes, click **Start**, then **Open Web console** when the service is ready to configure your models.
+
+The launcher's built-in GitHub/Gitee source addresses still point to the upstream project. To run this fork, clone this repository using the address below, then connect that folder in the app or launch it from the command line.
 
 China mirrors and international sources are available, and compatible existing tools are reused. Reserve at least **5 GiB** on the project drive; additional models and data need more space. See the [APP documentation](app/README.md) for usage, upgrades and uninstall options.
 
@@ -58,7 +62,7 @@ For development or command-line deployment, follow the steps below.
 | Models | A working chat model; configure an Embedding model for semantic retrieval and add speech or generation models as needed |
 
 ```bash
-git clone https://github.com/1292917512/AnelfAgent.git
+git clone https://github.com/kafuunochino/AnelfAgent.git
 cd AnelfAgent
 
 cp config/llm_clients.example.json config/llm_clients.json
@@ -376,6 +380,8 @@ The framework also provides file-write baselines, tool-loop guards, threat scann
 
 Development follows the needs of a lasting AI used in everyday personal work, maintaining core contracts while keeping extensions self-contained. Reproducible issues, practical scenarios, channels, tools, skills, and documentation are welcome. Supported behavior and validation scope are established by implementation and the corresponding tests.
 
+Report issues with this fork in [this repository's Issues](https://github.com/kafuunochino/AnelfAgent/issues), and submit code or documentation contributions through [this repository's Pull requests](https://github.com/kafuunochino/AnelfAgent/pulls).
+
 1. Fork the repository and create a feature branch.
 2. Follow dependency direction, typing, and module ownership in [AGENTS.md](AGENTS.md).
 3. Add appropriately scoped validation for behavior changes and distinguish live checks from isolated tests.
@@ -387,4 +393,4 @@ Thanks to [LiteLLM](https://github.com/BerriAI/litellm), [FastAPI](https://githu
 
 AnelfAgent communicates with NapCat through OneBot without including or modifying its source. External components and services retain their own licenses and terms.
 
-[MIT License](LICENSE) © 2025–2026 AnelfAgent Contributors · [Official Website](https://anelf.cn) · [GitHub](https://github.com/1292917512/AnelfAgent)
+[MIT License](LICENSE) © 2025–2026 AnelfAgent Contributors · [This Repository](https://github.com/kafuunochino/AnelfAgent) · [Upstream Project](https://github.com/1292917512/AnelfAgent/tree/main) · [Upstream Website](https://anelf.cn)

@@ -1,15 +1,16 @@
 # AnelfAgent
 
+> 本仓库复刻自 [1292917512/AnelfAgent 的 main 分支](https://github.com/1292917512/AnelfAgent/tree/main)，由 [kafuunochino](https://github.com/kafuunochino) 维护此复刻版本。感谢原作者及上游贡献者。
+
 **v0.4.0** · 个人开源、自托管的自主 AI 运行时
 
 **连续记忆 · 跨频道在场 · 主动行动 · 技能生长 · AI 自维护 · 模块热更新**
 
-[![官方网站 · anelf.cn](https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99-anelf.cn-2563EB?style=for-the-badge)](https://anelf.cn)
-[![Gitee · 国内镜像](https://img.shields.io/badge/Gitee-%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/eflyz/AnelfAgent)
+**[当前仓库 · kafuunochino/AnelfAgent](https://github.com/kafuunochino/AnelfAgent)** · [上游项目官网](https://anelf.cn) · [上游 Gitee 镜像](https://gitee.com/eflyz/AnelfAgent)
 
 **简体中文** | [English](README_EN.md)
 
-[![CI](https://github.com/1292917512/AnelfAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/1292917512/AnelfAgent/actions/workflows/ci.yml)
+[![CI](https://github.com/kafuunochino/AnelfAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/kafuunochino/AnelfAgent/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/package%20manager-uv-DE5FE9.svg)](https://github.com/astral-sh/uv)
@@ -18,7 +19,7 @@ AnelfAgent 希望让你在自己的设备上养成一个长期在场的 AI 个�
 
 QQ、微信、飞书、Telegram、游戏和 Web 工作区是它的不同入口，共用同一套思维、记忆、技能与工具。对话、心跳、后台事件、子代理和工作流共同构成持续工作的运行时；你可以通过 WebUI 查看它正在做什么、依据什么，以及操作是否真正完成。
 
-这是一个**个人维护、持续迭代的 MIT 开源项目**。代码、部署、模型选择、权限和数据由使用者掌握；日常配置与运维既能在网页完成，也有供 AI 调用的工具接口。“自主成长”落实为可追溯的记忆、可复用的技能和可验证的模块更新流程。
+本仓库在上游项目基础上进行维护，沿用 **MIT 许可证**。代码、部署、模型选择、权限和数据由使用者掌握；日常配置与运维既能在网页完成，也有供 AI 调用的工具接口。“自主成长”落实为可追溯的记忆、可复用的技能和可验证的模块更新流程。
 
 ## 导航
 
@@ -34,7 +35,7 @@ QQ、微信、飞书、Telegram、游戏和 Web 工作区是它的不同入口�
 
 ### 下载安装包
 
-可以直接从 **[GitHub Releases](https://github.com/1292917512/AnelfAgent/releases/latest)** 下载 AnelfAgent 桌面安装包，无需先手动克隆仓库或配置 Python、Node.js。
+本复刻版本的桌面安装包请查看 **[本仓库 Releases](https://github.com/kafuunochino/AnelfAgent/releases)**。若尚未发布对应系统的安装包，请使用下方的[源码安装](#从源码安装)。发布安装包时，可按以下系统和文件格式选择：
 
 | 系统 | 下载文件 |
 |---|---|
@@ -44,6 +45,8 @@ QQ、微信、飞书、Telegram、游戏和 Web 工作区是它的不同入口�
 | 其他 Linux x64 | `.AppImage`，赋予执行权限后运行 |
 
 安装并打开 APP，按引导选择项目位置和下载源，即可自动获取源码、通过 uv 准备 Python 环境、安装依赖并构建 Web 前端。已有项目可选择原目录接入，也可按引导迁移。安装完成后点击「启动」，待服务就绪再点击「打开 Web 控制台」配置模型。
+
+启动器内置的 GitHub/Gitee 源码地址目前仍指向上游项目。要运行本复刻版本，请先按下方地址克隆本仓库，再在 APP 中接入该目录，或从命令行启动。
 
 国内与国际下载源均可选择；已有兼容工具会复用。项目所在磁盘至少预留 **5 GiB**，额外模型和数据需要更多空间。完整使用、升级与卸载说明见 [APP 文档](app/README.md)。
 
@@ -60,18 +63,10 @@ QQ、微信、飞书、Telegram、游戏和 Web 工作区是它的不同入口�
 
 #### 1. 获取代码
 
-选择一个代码源克隆仓库，后续安装步骤相同。
-
-**[Gitee · 国内镜像](https://gitee.com/eflyz/AnelfAgent)**
+使用 **[GitHub · 本仓库](https://github.com/kafuunochino/AnelfAgent)** 克隆复刻版本：
 
 ```bash
-git clone https://gitee.com/eflyz/AnelfAgent.git
-```
-
-**[GitHub · 主仓库](https://github.com/1292917512/AnelfAgent)**
-
-```bash
-git clone https://github.com/1292917512/AnelfAgent.git
+git clone https://github.com/kafuunochino/AnelfAgent.git
 ```
 
 #### 2. 安装依赖
@@ -94,8 +89,8 @@ cd ../..
 
 ### 启动与首次配置
 
-也可安装 **AnelfAgent** 本地 APP（Windows / macOS / Ubuntu），自动检测和安装运行环境，
-按系统时区默认选择 GitHub/Gitee 源码，完成项目安装与启动。APP 和独立管理网页共用状态，
+也可通过 **AnelfAgent** 本地 APP（Windows / macOS / Ubuntu）接入已克隆的本复刻版本目录，自动检测和安装运行环境，
+完成项目启动。APP 和独立管理网页共用状态，
 原有 `start` 入口继续可用；`start.bat --manager` / `./start.sh --manager` 打开管理页。
 使用、打包和跨平台发布见[启动器说明](app/README.md)。
 
@@ -398,6 +393,8 @@ npm run build
 
 项目以个人实际使用中的长期 AI 为方向，持续维护核心契约，让扩展跟随模块自持。欢迎提出具体问题、分享可复现场景、贡献频道、工具、技能和文档；支持与验证范围以仓库实现及对应测试为准。
 
+本复刻版本的问题反馈请提交至 [本仓库 Issues](https://github.com/kafuunochino/AnelfAgent/issues)，代码与文档贡献请提交至 [本仓库 Pull requests](https://github.com/kafuunochino/AnelfAgent/pulls)。
+
 1. Fork 仓库并创建特性分支。
 2. 遵守 [AGENTS.md](AGENTS.md) 的依赖方向、类型与模块归属约定。
 3. 为行为变更补充匹配范围的验证，说明真实验证与隔离测试的区别。
@@ -409,4 +406,4 @@ npm run build
 
 AnelfAgent 经 OneBot 与 NapCat 通信，不包含或修改其源码；各外部组件与服务遵循各自的许可和使用条款。
 
-[MIT License](LICENSE) © 2025–2026 AnelfAgent Contributors · [官方网站](https://anelf.cn) · [GitHub](https://github.com/1292917512/AnelfAgent)
+[MIT License](LICENSE) © 2025–2026 AnelfAgent Contributors · [当前仓库](https://github.com/kafuunochino/AnelfAgent) · [上游项目](https://github.com/1292917512/AnelfAgent/tree/main) · [上游项目官网](https://anelf.cn)
