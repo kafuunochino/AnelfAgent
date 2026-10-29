@@ -116,6 +116,9 @@ uv run python launch.py --no-webui
 uv run python -m channels.cli
 ```
 
+WebUI 默认仅本机访问。需要局域网访问时，先设置管理密码，再在 `config/webui.json` 中显式配置
+`server.host` 为 `0.0.0.0`（或设置 `ANELF_WEBUI_HOST`）；桌面启动器可在设置中切换访问范围。
+
 Cognee 知识图谱依赖随项目安装，集成默认启用；配置相应聊天与嵌入模型后使用。图谱增强不可用时保留原生记忆检索。联网检索支持内置源、商业提供者及独立部署的 SearXNG / Crawl4AI；有 Docker 环境时可后台启动本地服务，见[检索部署说明](deploy/retrieval/README.md)。外部服务和语音、视觉负载按需配置。
 
 ### 日常运行与更新

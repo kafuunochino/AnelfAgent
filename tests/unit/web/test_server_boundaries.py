@@ -195,3 +195,43 @@ def test_optional_password_can_be_cleared(client: TestClient):
     assert client.post("/api/auth/login", json={"password": "test-secret"}).status_code == 200
     assert client.put("/api/auth/password", json={"new_password": ""}).status_code == 200
     assert client.get("/api/auth/check").json() == {"required": False, "authenticated": True}
+
+
+@pytest.mark.parametrize("content, expected", [
+    (None, ("127.0.0.1", 8092)),
+    ("{}", ("127.0.0.1", 8092)),
+    ('{"server":{"host":""}}', ("127.0.0.1", 8092)),
+    ('{"server":{"host":null}}', ("127.0.0.1", 8092)),
+    ('{"server":{"port":9000}}', ("127.0.0.1", 9000)),
+    ("{broken", ("127.0.0.1", 8092)),
+    ('{"server":{"host":"0.0.0.0","port":9000}}', ("0.0.0.0", 9000)),
+    ('{"server":{"host":"::","port":9001}}', ("::", 9001)),
+])
+def test_webui_defaults_to_loopback_and_preserves_explicit_listeners(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+    content: str | None, expected: tuple[str, int],
+) -> None:
+    config = tmp_path / "webui.json"
+    if content is not None:
+        config.write_text(content, encoding="utf-8")
+    monkeypatch.setattr(ConfigPaths, "WEBUI_CONFIG", str(config))
+    monkeypatch.delenv("ANELF_WEBUI_HOST", raising=False)
+    monkeypatch.delenv("ANELF_WEBUI_PORT", raising=False)
+    assert server._load_server_config() == expected
+
+
+def test_environment_can_explicitly_enable_lan_access(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    config = tmp_path / "webui.json"
+    config.write_text('{"server":{"host":"127.0.0.1","port":8092}}', encoding="utf-8")
+    monkeypatch.setattr(ConfigPaths, "WEBUI_CONFIG", str(config))
+    monkeypatch.setenv("ANELF_WEBUI_HOST", "0.0.0.0")
+    monkeypatch.setenv("ANELF_WEBUI_PORT", "9000")
+    assert server._load_server_config() == ("0.0.0.0", 9000)
+    assert json.loads(config.read_text("utf-8"))["server"] == {"host": "127.0.0.1", "port": 8092}
+
+
+def test_empty_host_override_keeps_local_default(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(ConfigPaths, "WEBUI_CONFIG", str(tmp_path / "webui.json"))
+    monkeypatch.setenv("ANELF_WEBUI_HOST", "")
+    monkeypatch.delenv("ANELF_WEBUI_PORT", raising=False)
+    assert server._load_server_config() == ("127.0.0.1", 8092)

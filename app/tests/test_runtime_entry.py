@@ -111,7 +111,7 @@ if __name__=='__main__': main()
             return not state["busy"] and state["phase"] == "running"
         wait(ready, manager)
         assert observed_starting
-        assert json.loads((root / "server.json").read_text()) == ["0.0.0.0", port]
+        assert json.loads((root / "server.json").read_text()) == ["127.0.0.1", port]
         first_pid = manager.status()["pid"]
         manager.submit("restart")
         wait(lambda: not manager.status()["busy"] and manager.status()["phase"] == "running"

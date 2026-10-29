@@ -93,6 +93,9 @@ uv run python launch.py --no-webui
 uv run python -m channels.cli
 ```
 
+WebUI listens on this device only by default. For LAN access, set an administrator password first, then explicitly
+set `server.host` to `0.0.0.0` in `config/webui.json` (or set `ANELF_WEBUI_HOST`). The desktop launcher also offers an access scope setting.
+
 Cognee dependencies ship with the project and its integration is enabled by default; configure its chat and embedding models to use it. Native memory retrieval remains available when graph enhancement is unavailable. Web retrieval supports built-in sources, commercial providers, and separately deployed SearXNG / Crawl4AI. Local services can start in the background when Docker is available; see the [retrieval deployment guide](deploy/retrieval/README.md). External services and speech or vision runtimes are configured as needed.
 
 ### Everyday Operations and Updates
